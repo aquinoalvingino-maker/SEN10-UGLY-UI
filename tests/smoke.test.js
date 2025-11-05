@@ -1,65 +1,12 @@
-name: Build, Test, and Deploy Static Site
+// smoke.test.js
+describe("Basic Smoke Tests", () => {
+  test("This test should PASS", () => {
+    const sum = 2 + 3;
+    expect(sum).toBe(5); // ✅ Passes
+  });
 
-on:
-  push:
-    branches:
-      - main
-
-jobs:
-  # 🧪 TEST JOB
-  test:
-    name: Run Lint & Jest Tests
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Run ESLint
-        run: npx eslint . --ext .js
-
-      - name: Run Jest tests
-        run: npm test
-
-  # 🚀 DEPLOY JOB
-  deploy:
-    name: Deploy to GitHub Pages
-    runs-on: ubuntu-latest
-    needs: test   # only runs if test job passes
-    if: success()
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build static site
-        run: |
-          if [ -f package.json ] && grep -q "\"build\"" package.json; then
-            npm run build
-          else
-            echo "⚠️ No build script found, skipping build."
-            mkdir -p dist
-            cp -r * dist/
-          fi
-
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+  test("This test should FAIL", () => {
+    const truth = false;
+    expect(truth).toBe(true); // ❌ Fails intentionally
+  });
+});
