@@ -51,11 +51,13 @@ jobs:
             - name: Build static site
               run: |
                   if [ -f package.json ] && grep -q "\"build\"" package.json; then
+                    echo "🛠️ Running npm build script..."
                     npm run build
                   else
-                    echo "⚠️ No build script found, skipping build."
+                    echo "⚠️ No build script found, creating dist folder manually."
                     mkdir -p dist
-                    cp -r * dist/
+                    shopt -s extglob
+                    cp -r !(dist) dist/
                   fi
 
             - name: Deploy to GitHub Pages

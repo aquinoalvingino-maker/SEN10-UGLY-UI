@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "lint": "eslint . --ext .js",
-    "test": "jest"
+    "test": "jest",
+    "build": "mkdir -p dist && cp -r src/* dist/"
   },
   "repository": {
     "type": "git",
