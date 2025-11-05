@@ -47,15 +47,17 @@ jobs:
               run: npm ci
 
             - name: Build static site
+              shell: bash
               run: |
                   if [ -f package.json ] && grep -q "\"build\"" package.json; then
-                    echo "🛠️ Running npm build script..."
+                    echo "Running npm build script..."
                     npm run build
                   else
-                    echo "⚠️ No build script found, creating dist folder manually."
+                    echo "No build script found, creating dist folder manually."
                     mkdir -p dist
                     find . -mindepth 1 -maxdepth 1 ! -name 'dist' -exec cp -r {} dist/ \;
                   fi
+                  echo "Build step complete."
 
             - name: Deploy to GitHub Pages
               uses: peaceiris/actions-gh-pages@v3
