@@ -1,0 +1,128 @@
+/* Global Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #fef0f6;
+    /* Soft pink background */
+    color: #333;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    line-height: 1.6;
+}
+
+/* Header Styles */
+header {
+    background-color: #f4a6c9;
+    /* Soft pink */
+    color: white;
+    text-align: center;
+    padding: 30px 0;
+    border-bottom: 5px solid #f19fb1;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 3rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* Section Styles */
+section {
+    padding: 20px;
+    margin: 0 20px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+h2 {
+    font-size: 2rem;
+    color: #f4a6c9;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+ul {
+    font-size: 1.1rem;
+    color: #777;
+    list-style: inside;
+}
+
+ul li {
+    margin: 10px 0;
+}
+
+/* Image Styles */
+img {
+    width: 100%;
+    max-width: 600px;
+    display: block;
+    margin: 20px auto;
+    border-radius: 15px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Button/Link Styles */
+a {
+    text-decoration: none;
+    padding: 10px 15px;
+    background-color: #f4a6c9;
+    color: white;
+    border-radius: 20px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+a:hover {
+    background-color: #f19fb1;
+}
+
+/* Animations */
+h1,
+h2 {
+    animation: fadeIn 1.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    img {
+        width: 90%;
+    }
+
+    section {
+        margin: 0 10px;
+    }
+}
