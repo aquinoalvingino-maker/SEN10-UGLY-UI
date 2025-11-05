@@ -6,7 +6,9 @@ on:
             - main
 
 jobs:
+    # -------------------------
     # Run Lint & Tests
+    # -------------------------
     test:
         name: Run Lint & Jest Tests
         runs-on: ubuntu-latest
@@ -28,7 +30,9 @@ jobs:
             - name: Run Jest tests
               run: npm test
 
+    # -------------------------
     # Deploy only if tests pass
+    # -------------------------
     deploy:
         name: Deploy to GitHub Pages
         runs-on: ubuntu-latest
@@ -48,8 +52,10 @@ jobs:
 
             - name: Build static site
               run: |
+                  # Create dist folder
                   mkdir -p dist
-                  find . -maxdepth 1 -type f \( -name "*.html" -o -name "*.css" -o -name "*.js" -o -name "*.png" -o -name "*.jpg" \) -exec cp {} dist/ \;
+                  # Copy only static assets (HTML, CSS, JS, images)
+                  find . -maxdepth 1 -type f \( -name "*.html" -o -name "*.css" -o -name "*.js" -o -name "*.png" -o -name "*.jpg" -o -name "*.svg" \) -exec cp {} dist/ \;
 
             - name: Deploy to GitHub Pages
               uses: peaceiris/actions-gh-pages@v3
