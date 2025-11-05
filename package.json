@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint . --ext .js",
     "test": "jest",
-    "build": "mkdir -p dist && find . -mindepth 1 -maxdepth 1 ! -name 'dist' ! -name '.git' -exec cp -r {} dist/ \\;"
+    "build": "mkdir -p dist && cp -r *.html *.css *.js *.png *.jpg dist/ || true"
   },
   "repository": {
     "type": "git",

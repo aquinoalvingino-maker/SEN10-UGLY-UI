@@ -6,6 +6,7 @@ on:
             - main
 
 jobs:
+    # Run Lint & Tests
     test:
         name: Run Lint & Jest Tests
         runs-on: ubuntu-latest
@@ -27,6 +28,7 @@ jobs:
             - name: Run Jest tests
               run: npm test
 
+    # Deploy only if tests pass
     deploy:
         name: Deploy to GitHub Pages
         runs-on: ubuntu-latest
@@ -45,10 +47,16 @@ jobs:
               run: npm ci
 
             - name: Build static site
-              run: npm run build
+              run: |
+                  mkdir -p dist
+                  find . -maxdepth 1 -type f \( -name "*.html" -o -name "*.css" -o -name "*.js" -o -name "*.png" -o -name "*.jpg" \) -exec cp {} dist/ \;
 
             - name: Deploy to GitHub Pages
               uses: peaceiris/actions-gh-pages@v3
               with:
                   github_token: ${{ secrets.GITHUB_TOKEN }}
                   publish_dir: ./dist
+                  exclude_assets: |
+                      **/node_modules/**
+                      **/.github/**
+                      **/tests/**
