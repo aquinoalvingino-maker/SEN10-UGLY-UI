@@ -6,7 +6,6 @@ on:
             - main
 
 jobs:
-    # 🧪 TEST JOB
     test:
         name: Run Lint & Jest Tests
         runs-on: ubuntu-latest
@@ -29,7 +28,6 @@ jobs:
             - name: Run Jest tests
               run: npm test
 
-    # 🚀 DEPLOY JOB
     deploy:
         name: Deploy to GitHub Pages
         runs-on: ubuntu-latest
@@ -49,7 +47,6 @@ jobs:
               run: npm ci
 
             - name: Build static site
-              shell: bash # 👈 force bash, not sh
               run: |
                   if [ -f package.json ] && grep -q "\"build\"" package.json; then
                     echo "🛠️ Running npm build script..."
@@ -57,8 +54,7 @@ jobs:
                   else
                     echo "⚠️ No build script found, creating dist folder manually."
                     mkdir -p dist
-                    shopt -s extglob
-                    cp -r !(dist) dist/
+                    find . -mindepth 1 -maxdepth 1 ! -name 'dist' -exec cp -r {} dist/ \;
                   fi
 
             - name: Deploy to GitHub Pages
