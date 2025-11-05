@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint . --ext .js",
     "test": "jest",
-    "build": "mkdir -p dist && cp -r src/* dist/"
+    "build": "mkdir -p dist && cp -r * dist/ !dist"
   },
   "repository": {
     "type": "git",
