@@ -6,8 +6,8 @@ describe("Basic Smoke Tests", () => {
     expect(sum).toBe(5);
   });
 
-//   test("This test should FAIL", () => {
-//     const truth = false;
-//     expect(truth).toBe(true);
-//   });
+  test("This test should FAIL", () => {
+    const truth = false;
+    expect(truth).toBe(true);
+  });
 });
